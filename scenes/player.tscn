@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2l8t040rh2h2"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_w4k6x"]
+[ext_resource type="Texture2D" uid="uid://c4vmb300q6ubg" path="res://assets/Sprites/AraSamurai/SamuraiIdle.png" id="2_pxunq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i540"]
+atlas = ExtResource("2_pxunq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h23l"]
+atlas = ExtResource("2_pxunq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yo83"]
+atlas = ExtResource("2_pxunq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm73j"]
+atlas = ExtResource("2_pxunq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cjrik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i540")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h23l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yo83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm73j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rm6y"]
+size = Vector2(16, 31)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(28, -16)
+script = ExtResource("1_w4k6x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cjrik")
+autoplay = "default"
+frame_progress = 0.529348
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7rm6y")
