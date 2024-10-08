@@ -13,12 +13,23 @@ const JUMP_VELOCITY = -350.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var attacking = false
 
+
 func _ready():
 	# Conectar la señal `animation_finished` a la función `_on_animated_sprite_2d_animation_finished`.
 	animated_sprite_2d.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	attack_area.connect("body_entered", Callable(self, "_on_attack_area_body_entered"))
+	
+	# Ocultar el cursor al iniciar el juego.
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	
 
-
+func _process(delta):
+	# Detectar la pulsación de la tecla Escape.
+	if Input.is_action_just_pressed("ui_cancel"):  # "ui_cancel" es la acción por defecto para Escape.
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if Input.is_action_just_pressed("enterMouse"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	
 
 func _physics_process(delta):
 	# Add the gravity.
